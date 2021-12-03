@@ -13,11 +13,15 @@ class Program
     public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.WebHost.UseUrls("http://localhost:7074");
         // Add services to the container.
 
         builder.Services.AddControllers().AddJsonOptions(opt => opt.JsonSerializerOptions.AddContext<ShowModelContext>());
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(opt => opt.SwaggerDoc("v1", new OpenApiInfo { Title = "TvMaze Proxy Api", Version = "v1" }));
+        builder.Services.AddSwaggerGen(opt =>
+        {
+            opt.SwaggerDoc("v1", new OpenApiInfo { Title = "TvMaze Proxy Api", Version = "v1" });
+        });
 
         builder.Services.AddSingleton(builder.Configuration.GetSection("tvmaze").Get<ScraperConfig>() ?? new ScraperConfig());
         builder.Services.AddSingleton(builder.Configuration.GetSection("pagination").Get<PaginationConfig>() ?? new PaginationConfig());
@@ -43,7 +47,11 @@ class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(opt =>
+            {
+                opt.RoutePrefix = "";
+                opt.SwaggerEndpoint("swagger/v1/swagger.json", "");
+            });
         }
 
         app.UseHttpsRedirection();
