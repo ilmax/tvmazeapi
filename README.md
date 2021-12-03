@@ -9,7 +9,7 @@ The solution has a background job that fetches data from the upstream api and ex
 1. make sure you have the latest version of .NET (6.0) or download it from [here](https://get.dot.net)
 2. run `dotnet build` in the main folder, the one that contains the solution
 3. cd into the `src/TvMaze` folder
-4. add the Sql Server connection string user secret via this command `dotnet user-secret add ` 
+4. add the Sql Server connection string user secret via this command `dotnet user-secret set "ConnectionStrings:Database" "YOUR SQL SERVER CONNECTION STRING HERE" ` 
 5. install **dotnet ef** global tool via `dotnet tool install --global dotnet-ef` or update it, more info [here](https://docs.microsoft.com/en-us/ef/core/cli/dotnet#installing-the-tools)
 6. create the application database via `dotnet ef database update` 
 7. run `dotnet run` from the web project folder (i.e. `src/TvMaze`)
