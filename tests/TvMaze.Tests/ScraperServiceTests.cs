@@ -22,7 +22,7 @@ public class ScraperServiceTests
     }
     
     [Fact]
-    public void Ctor_checks_for_null_show_manager()
+    public void Ctor_checks_for_null_showManager()
     {
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new ScraperService(Mock.Of<ITvMazeHttpService>(), null, new NullLogger<ScraperService>()));

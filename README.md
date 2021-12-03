@@ -1,7 +1,7 @@
 # TV Maze Api
-This projects is a POC on how to cache the TvMaze api data using latest ASP.NET Core version (6.0 at the moment) and uses latest version of EF Core (6.0 at the moment) to persist data into a local Sql Server db used as a cache.
+This projects is a POC on how to cache the TvMaze api data using latest ASP.NET Core version (6.0 at the time of coding) and the latest version of EF Core (6.0 at the time of coding) to persist data into a local Sql Server db used as a cache.
 
-The solution has a baground job that fetches data from the upstream api and exposes a controller to expose the cached data to the outside world.
+The solution has a background job that fetches data from the upstream api and exposes a controller to expose the cached data to the outside world.
 
 >In order to make query faster, we use the new EF Core compiled model feature, and to make Json serialization faster I make use of the new System.Text.Json source generators.
 

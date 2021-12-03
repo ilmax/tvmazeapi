@@ -60,7 +60,7 @@ public class ScraperService
                 runInfo = runInfo with { RunStatus = RunStatus.RunSuccessful };
                 break;
             case TooManyShowsRequestServiceResult:
-                _logger.LogWarning("We reached api rate limiting, going to sleep a while and coming back in a while");
+                _logger.LogWarning("Reached api rate limiting, going to sleep and coming back in a while");
                 runInfo = runInfo with { RunStatus = RunStatus.RateLimitOnShows };
                 break;
             default:
@@ -95,10 +95,12 @@ public class ScraperService
                 runInfo = runInfo with { RunStatus = RunStatus.RunSuccessful };
                 break;
             case CastNotFoundServiceResult:
+                _logger.LogInformation($"No cast found for show with id {showId}");
                 await _showManager.StoreCastForShowAsync(FromRunInfo(runInfo), showId, Enumerable.Empty<CastEntry>(), cancellationToken);
                 runInfo = runInfo with { RunStatus = RunStatus.RunSuccessful };
                 break;
             case TooManyCastsRequestServiceResult:
+                _logger.LogWarning("Reached api rate limiting, going to sleep and coming back in a while");
                 runInfo = runInfo with { RunStatus = RunStatus.RateLimitOnCasts };
                 break;
             default:

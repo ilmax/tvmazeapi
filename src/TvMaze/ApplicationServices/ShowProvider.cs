@@ -30,8 +30,8 @@ public class ShowProvider
             {
                 Id = c.Id,
                 Name = c.Name,
-                DateOfBirth = c.DateOfBirth
-            }).OrderBy(c => c.DateOfBirth).ToList()
+                Birthday = c.DateOfBirth
+            }).OrderBy(c => c.Birthday).ToList()
         }).OrderBy(x => x.Id);
 
         var count = await query.CountAsync(cancellationToken);

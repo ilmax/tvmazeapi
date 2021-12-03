@@ -6,5 +6,5 @@ public record ActorModel
 {
     public long Id { get; set; }
     public string Name { get; set; }
-    public DateTimeOffset? DateOfBirth { get; set; }
+    public DateTimeOffset? Birthday { get; set; }
 }

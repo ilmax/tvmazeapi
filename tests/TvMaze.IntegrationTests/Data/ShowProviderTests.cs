@@ -49,8 +49,8 @@ public class ShowProviderTests
         Assert.Equal(6, result.TotalCount);
         Assert.Equal(1, result.CurrentPage);
         var firstShow = result.Items.First();
-        Assert.Equal(1950, firstShow.Cast.First().DateOfBirth.GetValueOrDefault().Year);
-        Assert.Equal(1970, firstShow.Cast.Last().DateOfBirth.GetValueOrDefault().Year);
+        Assert.Equal(1950, firstShow.Cast.First().Birthday.GetValueOrDefault().Year);
+        Assert.Equal(1970, firstShow.Cast.Last().Birthday.GetValueOrDefault().Year);
     }
 
     [Fact]
@@ -67,9 +67,9 @@ public class ShowProviderTests
         Assert.NotNull(result);
         Assert.Equal(6, result.TotalCount);
         Assert.Equal(1, result.CurrentPage);
-        var lastShow = result.Items.First(x => x.Cast.Any(a => a.DateOfBirth is null));
-        Assert.Null(lastShow.Cast.First().DateOfBirth);
-        Assert.Equal(1950, lastShow.Cast.Skip(1).First().DateOfBirth.GetValueOrDefault().Year);
+        var lastShow = result.Items.First(x => x.Cast.Any(a => a.Birthday is null));
+        Assert.Null(lastShow.Cast.First().Birthday);
+        Assert.Equal(1950, lastShow.Cast.Skip(1).First().Birthday.GetValueOrDefault().Year);
     }
 
     [Fact]
